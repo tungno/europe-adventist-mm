@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Camp 2025 Invitation Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @page {
+            size: A5;
+            margin: 0;
+        }
+        
+        @media print {
+            body {
+                background: white !important;
+            }
+            .card {
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .card {
+            width: 148mm;
+            height: 210mm;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
+            padding: 40px 30px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .year {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card-body {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 150px);
+        }
+        
+        .verse-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-left: 4px solid #2c5f2d;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .verse {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .reference {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .theme-question {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c5f2d;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .details {
+            margin: 25px 0;
+            flex-grow: 1;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #333;
+        }
+        
+        .icon {
+            width: 30px;
+            height: 30px;
+            background: #e8f5e8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .registration-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: auto;
+        }
+        
+        .cta-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c5f2d;
+            margin-bottom: 15px;
+        }
+        
+        .qr-wrapper {
+            display: inline-block;
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            display: block;
+        }
+        
+        .qr-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .deadline {
+            font-size: 0.85rem;
+            color: #d32f2f;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .organizer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .decorative-element {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(151, 188, 98, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .decorative-element.top-right {
+            top: -50px;
+            right: -50px;
+        }
+        
+        .decorative-element.bottom-left {
+            bottom: -50px;
+            left: -50px;
+        }
+        .download-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .download-btn {
+            background: #2c5f2d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .download-btn:hover {
+            background: #1e4420;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media print {
+            .download-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="download-container">
+        <button class="download-btn" onclick="downloadCard()">📥 Download Invitation</button>
+    </div>
+    
+    <div class="card" id="invitation-card">
+        <div class="decorative-element top-right"></div>
+        <div class="decorative-element bottom-left"></div>
+        
+        <div class="card-header">
+            <h1 class="title">SUMMER CAMP</h1>
+            <p class="year">2025</p>
+        </div>
+        
+        <div class="card-body">
+            <div class="verse-section">
+                <p class="verse">"But he who endures to the end shall be saved."</p>
+                <p class="reference">Matthew 24:13-14</p>
+            </div>
+            
+            <p class="theme-question">Are you ready for the end time?</p>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <div class="icon">📅</div>
+                    <span><strong>Date:</strong> July 23-26, 2025</span>
+                </div>
+                <div class="detail-item">
+                    <div class="icon">📍</div>
+                    <span><strong>Location:</strong> Västeräng Lägergård, Motala</span>
+                </div>
+                <div class="detail-item">
+                    <div class="icon">👥</div>
+                    <span><strong>Who:</strong> All ages welcome</span>
+                </div>
+            </div>
+            
+            <div class="registration-section">
+                <p class="cta-title">Registration is Now Open!</p>
+                <div class="qr-wrapper">
+                    <img src="images/qr-code.png" class="qr-code" alt="Registration QR Code">
+                </div>
+                <p class="qr-text">Scan to Register</p>
+                <p class="deadline">⏰ Registration Deadline: June 30th, 2025</p>
+            </div>
+            
+            <p class="organizer">Organized by Europe Myanmar Adventist Committee</p>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function downloadCard() {
+            const card = document.getElementById('invitation-card');
+            const btn = document.querySelector('.download-btn');
+            
+            // Disable button during download
+            btn.disabled = true;
+            btn.textContent = '⏳ Generating...';
+            
+            // Use html2canvas to convert the card to an image
+            html2canvas(card, {
+                scale: 2, // Higher quality
+                backgroundColor: '#ffffff',
+                logging: false,
+                useCORS: true // Allow cross-origin images
+            }).then(canvas => {
+                // Convert to blob
+                canvas.toBlob(blob => {
+                    // Create download link
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'summer-camp-2025-invitation.png';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    // Re-enable button
+                    btn.disabled = false;
+                    btn.textContent = '📥 Download Invitation';
+                }, 'image/png');
+            }).catch(error => {
+                console.error('Error generating image:', error);
+                alert('Sorry, there was an error generating the image. Please try again.');
+                btn.disabled = false;
+                btn.textContent = '📥 Download Invitation';
+            });
+        }
+        
+        // Alternative method to save as PDF
+        function downloadAsPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

@@ -6,6 +6,7 @@
     <title>Summer Camp 2025 Invitation Card</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Open+Sans:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;600;700&display=swap');
         
         * {
             margin: 0;
@@ -29,7 +30,7 @@
         }
         
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Open Sans', 'Noto Sans Myanmar', sans-serif;
             background: #f5f5f5;
             min-height: 100vh;
             display: flex;
@@ -43,16 +44,36 @@
             height: 210mm;
             background: white;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            overflow: visible;
             position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('./images/logo.jpg');
+            background-size: 90%;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.2;
+            z-index: 0;
+            pointer-events: none;
         }
         
         .card-header {
-            background: linear-gradient(135deg, #2c5f2d 0%, #97bc62 100%);
-            padding: 40px 30px 30px;
+            background: linear-gradient(135deg, rgba(44, 95, 45, 0.9) 0%, rgba(151, 188, 98, 0.9) 100%);
+            padding: 25px 20px 15px;
             text-align: center;
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
+            z-index: 1;
         }
         
         .card-header::before {
@@ -73,17 +94,25 @@
         
         .title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             position: relative;
             z-index: 1;
         }
         
+        .title-burmese {
+            font-family: 'Noto Sans Myanmar', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 5px;
+        }
+        
         .year {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.9);
             font-weight: 600;
             letter-spacing: 2px;
@@ -92,137 +121,197 @@
         }
         
         .card-body {
-            padding: 30px;
+            padding: 15px 20px;
             display: flex;
             flex-direction: column;
-            height: calc(100% - 150px);
+            height: calc(100% - 120px);
+            position: relative;
+            z-index: 1;
+            overflow: visible;
         }
         
         .verse-section {
-            background: #f8f9fa;
-            padding: 20px;
+            background: rgba(248, 249, 250, 0.85);
+            padding: 12px;
             border-left: 4px solid #2c5f2d;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
             border-radius: 0 8px 8px 0;
+            flex-shrink: 0;
         }
         
         .verse {
-            font-size: 1.1rem;
+            font-size: 0.85rem;
             font-style: italic;
             color: #333;
-            margin-bottom: 8px;
-            line-height: 1.5;
+            margin-bottom: 3px;
+            line-height: 1.3;
+        }
+        
+        .verse-burmese {
+            font-family: 'Noto Sans Myanmar', sans-serif;
+            font-size: 0.75rem;
+            color: #444;
+            margin-bottom: 5px;
+            line-height: 1.4;
         }
         
         .reference {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #666;
             font-weight: 600;
         }
         
         .theme-question {
-            font-size: 1.3rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #2c5f2d;
-            margin-top: 15px;
+            margin-bottom: 8px;
             text-align: center;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+        
+        .theme-question-burmese {
+            font-family: 'Noto Sans Myanmar', sans-serif;
+            font-size: 0.8rem;
+            color: #2c5f2d;
+            margin-top: 3px;
         }
         
         .details {
-            margin: 25px 0;
-            flex-grow: 1;
+            margin-bottom: 10px;
+            flex-shrink: 0;
         }
         
         .detail-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 1rem;
+            align-items: flex-start;
+            margin-bottom: 6px;
+            font-size: 0.8rem;
             color: #333;
         }
         
+        .detail-text {
+            flex: 1;
+        }
+        
+        .detail-burmese {
+            font-family: 'Noto Sans Myanmar', sans-serif;
+            font-size: 0.75rem;
+            color: #555;
+            margin-top: 2px;
+        }
+        
         .icon {
-            width: 30px;
-            height: 30px;
-            background: #e8f5e8;
+            width: 24px;
+            height: 24px;
+            background: rgba(232, 245, 232, 0.85);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            font-size: 1.2rem;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            flex-shrink: 0;
         }
         
         .registration-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
-            padding: 25px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(248, 249, 250, 0.85) 0%, rgba(232, 245, 232, 0.85) 100%);
+            padding: 12px;
+            border-radius: 10px;
             text-align: center;
             margin-top: auto;
+            flex-shrink: 0;
         }
         
         .cta-title {
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #2c5f2d;
-            margin-bottom: 15px;
+            margin-bottom: 3px;
+        }
+        
+        .cta-title-burmese {
+            font-family: 'Noto Sans Myanmar', sans-serif;
+            font-size: 0.75rem;
+            color: #2c5f2d;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
         
         .qr-wrapper {
             display: inline-block;
-            background: white;
-            padding: 10px;
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 1);
+            padding: 6px;
+            border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
         }
         
         .qr-code {
-            width: 100px;
-            height: 100px;
+            width: 50px;
+            height: 50px;
             display: block;
         }
         
         .qr-text {
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             color: #666;
-            margin-top: 10px;
+            margin-top: 6px;
         }
         
         .deadline {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: #d32f2f;
             font-weight: 600;
-            margin-top: 10px;
+            margin-top: 6px;
+        }
+        
+        .deadline-burmese {
+            font-family: 'Noto Sans Myanmar', sans-serif;
+            font-size: 0.7rem;
+            color: #d32f2f;
+            margin-top: 2px;
         }
         
         .organizer {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
             text-align: center;
-            font-size: 0.8rem;
-            color: #666;
+            font-size: 0.7rem;
+            color: #555;
             font-style: italic;
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #e0e0e0;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+        
+        .organizer-burmese {
+            font-family: 'Noto Sans Myanmar', sans-serif;
+            font-size: 0.65rem;
+            color: #666;
+            margin-top: 2px;
         }
         
         .decorative-element {
             position: absolute;
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             background: radial-gradient(circle, rgba(151, 188, 98, 0.1) 0%, transparent 70%);
             border-radius: 50%;
         }
         
         .decorative-element.top-right {
-            top: -50px;
-            right: -50px;
+            top: -40px;
+            right: -40px;
         }
         
         .decorative-element.bottom-left {
-            bottom: -50px;
-            left: -50px;
+            bottom: -40px;
+            left: -40px;
         }
+        
         .download-container {
             position: fixed;
             top: 20px;
@@ -267,42 +356,61 @@
         
         <div class="card-header">
             <h1 class="title">SUMMER CAMP</h1>
+            <p class="title-burmese">နွေရာသီ စခန်း</p>
             <p class="year">2025</p>
         </div>
         
         <div class="card-body">
             <div class="verse-section">
                 <p class="verse">"But he who endures to the end shall be saved."</p>
-                <p class="reference">Matthew 24:13-14</p>
+                <p class="verse-burmese">"အဆုံးတိုင်အောင် ခံနိုင်သောသူမူကား ကယ်တင်ခြင်းသို့ ရောက်လိမ့်မည်။"</p>
+                <p class="reference">Matthew 24:13-14 / မဿဲ ၂၄:၁၃-၁၄</p>
             </div>
             
-            <p class="theme-question">Are you ready for the end time?</p>
+            <div class="theme-question">
+                Are you ready for the end time?
+                <div class="theme-question-burmese">နောက်ဆုံးသောကာလအတွက် အသင့်ရှိပါသလား။</div>
+            </div>
             
             <div class="details">
                 <div class="detail-item">
                     <div class="icon">📅</div>
-                    <span><strong>Date:</strong> July 23-26, 2025</span>
+                    <div class="detail-text">
+                        <strong>Date:</strong> July 23-26, 2025
+                        <div class="detail-burmese">ရက်စွဲ - ဇူလိုင် ၂၃-၂၆၊ ၂၀၂၅</div>
+                    </div>
                 </div>
                 <div class="detail-item">
                     <div class="icon">📍</div>
-                    <span><strong>Location:</strong> Västeräng Lägergård, Motala</span>
+                    <div class="detail-text">
+                        <strong>Location:</strong> Västeräng Lägergård, Motala, Sweden
+                        <div class="detail-burmese">နေရာ - Västeräng Lägergård, Motala, ဆွီဒင်</div>
+                    </div>
                 </div>
                 <div class="detail-item">
                     <div class="icon">👥</div>
-                    <span><strong>Who:</strong> All ages welcome</span>
+                    <div class="detail-text">
+                        <strong>Who:</strong> All ages welcome
+                        <div class="detail-burmese">အသက်အရွယ်မရွေး လာရောက်နိုင်ပါသည်</div>
+                    </div>
                 </div>
             </div>
             
             <div class="registration-section">
                 <p class="cta-title">Registration is Now Open!</p>
+                <p class="cta-title-burmese">စာရင်းသွင်းခြင်း ဖွင့်လှစ်ပြီး!</p>
                 <div class="qr-wrapper">
-                    <img src="images/qr-code.png" class="qr-code" alt="Registration QR Code">
+                    <img src="./images/qr-code.png" class="qr-code" alt="Registration QR Code">
                 </div>
-                <p class="qr-text">Scan to Register</p>
-                <p class="deadline">⏰ Registration Deadline: June 30th, 2025</p>
+                <p class="qr-text">Scan to Register / စာရင်းသွင်းရန် စကန်ဖတ်ပါ</p>
+                <p class="deadline">⏰ Registration Deadline: June 10th, 2025</p>
+                <p class="deadline-burmese">စာရင်းသွင်းရန် နောက်ဆုံးရက် - ဇွန် ၁၀၊ ၂၀၂၅</p>
             </div>
             
-            <p class="organizer">Organized by Europe Myanmar Adventist Committee</p>
+            <div class="organizer">
+                Organized by Europe Myanmar Adventist Committee
+                <div class="organizer-burmese">ဥရောပမြန်မာ အက်ဒ်ဗင်းတစ် ကော်မတီမှ စီစဉ်သည်</div>
+            </div>
         </div>
     </div>
     
@@ -316,12 +424,44 @@
             btn.disabled = true;
             btn.textContent = '⏳ Generating...';
             
-            // Use html2canvas to convert the card to an image
-            html2canvas(card, {
-                scale: 2, // Higher quality
-                backgroundColor: '#ffffff',
-                logging: false,
-                useCORS: true // Allow cross-origin images
+            // Wait for images to load
+            const img = card.querySelector('.qr-code');
+            const imagePromise = img.complete ? Promise.resolve() : new Promise(resolve => {
+                img.onload = resolve;
+                img.onerror = () => {
+                    console.warn('QR code failed to load, continuing anyway');
+                    resolve();
+                };
+            });
+            
+            imagePromise.then(() => {
+                // Force all images to load
+                const allImages = card.querySelectorAll('img');
+                const promises = Array.from(allImages).map(img => {
+                    if (img.complete) return Promise.resolve();
+                    return new Promise(resolve => {
+                        img.onload = resolve;
+                        img.onerror = resolve;
+                    });
+                });
+                
+                return Promise.all(promises).then(() => {
+                    // Use html2canvas to convert the card to an image
+                    return html2canvas(card, {
+                        scale: 2, // Higher quality
+                        backgroundColor: null, // Transparent background
+                        logging: false,
+                        useCORS: true, // Allow cross-origin images
+                        allowTaint: true, // Allow tainted canvas
+                        onclone: (clonedDoc) => {
+                            // Ensure background images are included
+                            const clonedCard = clonedDoc.getElementById('invitation-card');
+                            if (clonedCard) {
+                                clonedCard.style.backgroundColor = 'white';
+                            }
+                        }
+                    });
+                });
             }).then(canvas => {
                 // Convert to blob
                 canvas.toBlob(blob => {
